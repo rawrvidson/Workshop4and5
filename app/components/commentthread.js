@@ -1,28 +1,21 @@
 import React from 'react';
+import CommentEntry from './commententry';
 
-export default class CommentEntry extends React.Component {
+export default class CommentThread extends React.Component {
   render() {
     return (
-      <div>
-        <div className="media-left media-top">
-          PIC
-        </div>
-        <div className="media-body">
-          <div className="input-group">
-            <input type="text" className="form-control"
-                   placeholder="Write a comment..." />
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="button">
-                <span className="glyphicon glyphicon-camera"></span>
-              </button>
-              <button className="btn btn-default" type="button">
-                <span className="glyphicon glyphicon-heart">
-                </span>
-              </button>
-            </span>
-          </div>
-        </div>
-      </div>
+      <ul className="media-list">
+        {React.Children.map(this.props.children, function(child) {
+          return (
+            <li className="media">
+              {child}
+            </li>
+          )
+        })}
+        <li className="media">
+          <CommentEntry />
+        </li>
+      </ul>
     )
   }
 }
